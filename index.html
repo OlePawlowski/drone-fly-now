@@ -39,14 +39,8 @@
         exposure="1"
         autoplay
         animation-name="all"
-        camera-target="0m 0m 0m"
-        camera-orbit="0deg 90deg auto"
-        field-of-view="30deg"
-        interaction-policy="allow-when-focused"
         bounds="tight"
-        fit
-        min-camera-orbit="auto auto auto"
-        max-camera-orbit="auto auto auto">
+        fit>
     </model-viewer>
 
     <script type="module">
@@ -61,9 +55,10 @@
                 viewer.play();
             }
             
-            // Drohne zentrieren
-            viewer.updateFraming();
-            viewer.cameraTarget = '0m 0m 0m';
+            // Drohne zentrieren und framing aktualisieren
+            setTimeout(() => {
+                viewer.updateFraming();
+            }, 100);
         });
         
         // Sicherstellen, dass Animationen in Endlosschleife weiterlaufen
@@ -77,7 +72,7 @@
             // Drohne nochmals zentrieren nach dem Laden
             setTimeout(() => {
                 viewer.updateFraming();
-            }, 100);
+            }, 200);
         });
     </script>
 </body>
