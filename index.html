@@ -17,7 +17,7 @@
         }
         model-viewer {
             width: 100%;
-            height: 100vh;
+            height: 150vh;
         }
     </style>
 </head>
@@ -67,17 +67,9 @@
         viewer.addEventListener('model-loaded', () => {
             viewer.play();
             
-            // Drohne zentrieren und Kamera anpassen
+            // Drohne zentrieren
             setTimeout(() => {
                 viewer.updateFraming();
-                
-                // Kamera-Target nach unten verschieben, um die Drohne besser zu zentrieren
-                // Dies verschiebt den Fokuspunkt nach unten, damit die Drohne nicht so weit oben erscheint
-                try {
-                    viewer.cameraTarget = '0m -0.2m 0m';
-                } catch (e) {
-                    console.log('Camera target could not be set');
-                }
             }, 200);
         });
     </script>
