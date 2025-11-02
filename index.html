@@ -36,7 +36,8 @@
         environment-image="neutral"
         shadow-intensity="1"
         autoplay
-        animation-name="all">
+        animation-name="all"
+        interaction-policy="allow-when-focused">
     </model-viewer>
 
     <script type="module">
@@ -60,6 +61,11 @@
         // Alternative: Animationen automatisch abspielen, wenn Modell geladen ist
         viewer.addEventListener('model-loaded', () => {
             viewer.play();
+            
+            // Drohne automatisch vertikal zentrieren (ohne Klick)
+            setTimeout(() => {
+                viewer.updateFraming();
+            }, 100);
         });
     </script>
 </body>
