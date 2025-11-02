@@ -62,10 +62,22 @@
         viewer.addEventListener('model-loaded', () => {
             viewer.play();
             
-            // Drohne automatisch vertikal zentrieren (ohne Klick)
+            // Künstlichen Klick auslösen, um Drohne automatisch zu zentrieren
             setTimeout(() => {
-                viewer.updateFraming();
-            }, 100);
+                // Programmieren Klick in der Mitte des Viewers auslösen
+                const rect = viewer.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                const clickEvent = new MouseEvent('click', {
+                    view: window,
+                    bubbles: true,
+                    cancelable: true,
+                    clientX: centerX,
+                    clientY: centerY
+                });
+                viewer.dispatchEvent(clickEvent);
+            }, 200);
         });
     </script>
 </body>
