@@ -18,6 +18,9 @@
         model-viewer {
             width: 100%;
             height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -35,7 +38,15 @@
         shadow-intensity="1"
         exposure="1"
         autoplay
-        animation-name="all">
+        animation-name="all"
+        camera-target="0m 0m 0m"
+        camera-orbit="0deg 90deg auto"
+        field-of-view="30deg"
+        interaction-policy="allow-when-focused"
+        bounds="tight"
+        fit
+        min-camera-orbit="auto auto auto"
+        max-camera-orbit="auto auto auto">
     </model-viewer>
 
     <script type="module">
@@ -49,6 +60,10 @@
                 // Erste Animation abspielen (oder alle, falls möglich)
                 viewer.play();
             }
+            
+            // Drohne zentrieren
+            viewer.updateFraming();
+            viewer.cameraTarget = '0m 0m 0m';
         });
         
         // Sicherstellen, dass Animationen in Endlosschleife weiterlaufen
@@ -59,6 +74,10 @@
         // Alternative: Animationen automatisch abspielen, wenn Modell geladen ist
         viewer.addEventListener('model-loaded', () => {
             viewer.play();
+            // Drohne nochmals zentrieren nach dem Laden
+            setTimeout(() => {
+                viewer.updateFraming();
+            }, 100);
         });
     </script>
 </body>
