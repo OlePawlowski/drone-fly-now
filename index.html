@@ -61,6 +61,16 @@
         // Alternative: Animationen automatisch abspielen, wenn Modell geladen ist
         viewer.addEventListener('model-loaded', () => {
             viewer.play();
+            
+            // Drohne vertikal zentrieren
+            setTimeout(() => {
+                try {
+                    // Kamera-Target leicht nach unten verschieben, um vertikal zu zentrieren
+                    viewer.cameraTarget = '0m -0.1m 0m';
+                } catch (e) {
+                    console.log('Could not adjust camera target');
+                }
+            }, 300);
         });
     </script>
 </body>
